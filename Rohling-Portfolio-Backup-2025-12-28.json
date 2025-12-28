@@ -1,0 +1,437 @@
+{
+  "projects": [
+    {
+      "name": "J000332 ARRCS | Finance & Payroll Implementation",
+      "type": "Won",
+      "status": "Active",
+      "health": "Delayed",
+      "client": "Australian Regional and Remote Community Services (ARRCS)",
+      "manager": "Sharon Chong",
+      "budget": 436000,
+      "effortBudget": 1938,
+      "actualEffort": 1802,
+      "startDate": "2024-09-23",
+      "endDate": "2025-11-14",
+      "progress": 100,
+      "updates": "The project total effort has been completed, and the project is on hold. However, there is still $40K within the original budget.\nThe PM (Sharon) to confirm next steps, including closure/change request ",
+      "resources": [
+        {
+          "name": "Sharon",
+          "role": "Project Manager",
+          "plannedHours": 984,
+          "actualHours": 0,
+          "allocation": 100,
+          "startDate": "2024-09-23",
+          "endDate": "2025-11-14"
+        },
+        {
+          "name": "Barbara",
+          "role": "Business Analyst",
+          "plannedHours": 376,
+          "actualHours": 0,
+          "allocation": 80,
+          "startDate": "2024-11-01",
+          "endDate": "2025-09-26"
+        },
+        {
+          "name": "Kal",
+          "role": "Tech Lead",
+          "plannedHours": 18,
+          "actualHours": 0,
+          "allocation": 90,
+          "startDate": "2025-10-13",
+          "endDate": "2025-10-31"
+        },
+        {
+          "name": "Rowan",
+          "role": "Change Manager",
+          "plannedHours": 160,
+          "actualHours": 0,
+          "allocation": 80,
+          "startDate": "2024-10-11",
+          "endDate": "2025-05-16"
+        },
+        {
+          "name": "Ian",
+          "role": "Project Director",
+          "plannedHours": 56,
+          "actualHours": 0,
+          "allocation": 90,
+          "startDate": "2024-10-21",
+          "endDate": "2025-07-31"
+        },
+        {
+          "name": "Kevin",
+          "role": "Tech Lead",
+          "plannedHours": 110,
+          "actualHours": 0,
+          "allocation": 90,
+          "startDate": "2025-02-03",
+          "endDate": "2025-07-26"
+        }
+      ],
+      "collapsed": true
+    },
+    {
+      "name": "J000342 Carrington Care | Consulting Support",
+      "type": "Won",
+      "status": "Active",
+      "health": "On Track",
+      "client": "Carrington Care",
+      "manager": "Ian",
+      "budget": 40000,
+      "effortBudget": 160,
+      "actualEffort": 129,
+      "startDate": "2025-01-10",
+      "endDate": "2025-12-19",
+      "progress": 80,
+      "updates": "Only 30 hours remaining left for the project ",
+      "resources": [
+        {
+          "name": "Ian",
+          "role": "Project Manager",
+          "plannedHours": 116,
+          "actualHours": 0,
+          "allocation": 100,
+          "startDate": "2025-01-21",
+          "endDate": "2025-10-27"
+        },
+        {
+          "name": "Kal",
+          "role": "Tech Lead",
+          "plannedHours": 15,
+          "actualHours": 0,
+          "allocation": 90,
+          "startDate": "2025-10-07",
+          "endDate": "2025-10-27"
+        }
+      ],
+      "collapsed": true
+    },
+    {
+      "name": "J000344 Uniting | Support at Home and RAC  Transition Solution (Finance)  Plan and Implement",
+      "type": "Won",
+      "status": "Active",
+      "health": "On Track",
+      "client": "Uniting (NSW.ACT)",
+      "manager": "Allanah",
+      "budget": 884000,
+      "effortBudget": 3616,
+      "actualEffort": 3255,
+      "startDate": "2025-01-24",
+      "endDate": "2025-12-12",
+      "progress": 85,
+      "updates": "Project is in the last phase of testing with an aim to go live by the end of November ",
+      "resources": [
+        {
+          "name": "Allanah",
+          "role": "Project Manager",
+          "plannedHours": 1650,
+          "actualHours": 1576,
+          "allocation": 100,
+          "startDate": "2025-01-24",
+          "endDate": "2025-12-12"
+        },
+        {
+          "name": "Kaman",
+          "role": "Business Analyst",
+          "plannedHours": 1080,
+          "actualHours": 1050,
+          "allocation": 85,
+          "startDate": "2025-01-24",
+          "endDate": "2026-01-09"
+        },
+        {
+          "name": "Kal",
+          "role": "Business Analyst",
+          "plannedHours": 248,
+          "actualHours": 150,
+          "allocation": 10,
+          "startDate": "2025-01-24",
+          "endDate": "2025-06-24"
+        },
+        {
+          "name": "Darren",
+          "role": "Project Director",
+          "plannedHours": 104,
+          "actualHours": 0,
+          "allocation": 100,
+          "startDate": "2025-01-28",
+          "endDate": "2025-11-28"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "name": "J000351 - Uniting | Billing Solution Design & Build Bridging",
+      "type": "Won",
+      "status": "Active",
+      "health": "On Track",
+      "client": "Uniting (NSW.ACT)",
+      "manager": "Sharon",
+      "budget": 1389750,
+      "effortBudget": 7830,
+      "actualEffort": 7056,
+      "startDate": "2025-07-01",
+      "endDate": "2026-09-30",
+      "progress": 10,
+      "updates": "Epicore solution\nWe are very close to the budget, the new SOW is required immediately for the further billing",
+      "resources": [
+        {
+          "name": "Sharon",
+          "role": "Project Manager",
+          "plannedHours": 886,
+          "actualHours": 790,
+          "allocation": 100,
+          "startDate": "2025-07-01",
+          "endDate": "2026-07-31"
+        },
+        {
+          "name": "Kevin",
+          "role": "Tech Lead",
+          "plannedHours": 1200,
+          "actualHours": 843,
+          "allocation": 80,
+          "startDate": "2025-07-14",
+          "endDate": "2026-03-31"
+        },
+        {
+          "name": "Barbara",
+          "role": "Business Analyst",
+          "plannedHours": 693,
+          "actualHours": 693,
+          "allocation": 60,
+          "startDate": "2025-07-07",
+          "endDate": "2025-11-28"
+        },
+        {
+          "name": "Jennifer",
+          "role": "Business Analyst",
+          "plannedHours": 1200,
+          "actualHours": 650,
+          "allocation": 100,
+          "startDate": "2025-07-21",
+          "endDate": "2026-07-31"
+        },
+        {
+          "name": "Jack",
+          "role": "Tech Lead",
+          "plannedHours": 959,
+          "actualHours": 750,
+          "allocation": 100,
+          "startDate": "2025-07-07",
+          "endDate": "2026-03-31"
+        },
+        {
+          "name": "Gerard",
+          "role": "Tech Lead",
+          "plannedHours": 1648,
+          "actualHours": 850,
+          "allocation": 100,
+          "startDate": "2025-07-01",
+          "endDate": "2026-09-30"
+        },
+        {
+          "name": "EVORA (2 x RC)",
+          "role": "Tech Lead",
+          "plannedHours": 1580,
+          "actualHours": 850,
+          "allocation": 100,
+          "startDate": "2025-07-07",
+          "endDate": "2026-09-30"
+        },
+        {
+          "name": "Darren",
+          "role": "Project Director",
+          "plannedHours": 160,
+          "actualHours": 0,
+          "allocation": 100,
+          "startDate": "2025-07-07",
+          "endDate": "2025-10-20"
+        },
+        {
+          "name": "Matt",
+          "role": "Tech Lead",
+          "plannedHours": 328,
+          "actualHours": 328,
+          "allocation": 40,
+          "startDate": "2025-09-24",
+          "endDate": "2025-11-13"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "name": "J000356 Videri | IT Strategy",
+      "type": "Won",
+      "status": "Active",
+      "health": "On Track",
+      "client": "Videri Australia",
+      "manager": "Renee",
+      "budget": 66600,
+      "effortBudget": 290,
+      "actualEffort": 244,
+      "startDate": "2025-09-01",
+      "endDate": "2025-12-12",
+      "progress": 90,
+      "updates": "There will be a new PCR as the team have discovered more work ",
+      "resources": [
+        {
+          "name": "Renee",
+          "role": "Project Manager",
+          "plannedHours": 48,
+          "actualHours": 62,
+          "allocation": 30,
+          "startDate": "2025-09-01",
+          "endDate": "2025-12-12"
+        },
+        {
+          "name": "Ian",
+          "role": "Project Director",
+          "plannedHours": 82,
+          "actualHours": 64,
+          "allocation": 60,
+          "startDate": "2025-09-01",
+          "endDate": "2025-12-12"
+        },
+        {
+          "name": "Kal",
+          "role": "Tech Lead",
+          "plannedHours": 48,
+          "actualHours": 62,
+          "allocation": 50,
+          "startDate": "2025-09-01",
+          "endDate": "2025-12-12"
+        },
+        {
+          "name": "Kaman",
+          "role": "Business Analyst",
+          "plannedHours": 24,
+          "actualHours": 0,
+          "allocation": 100,
+          "startDate": "2025-09-01",
+          "endDate": "2025-10-31"
+        }
+      ]
+    },
+    {
+      "name": "J000352 - CatholicCare | Horizon Implementation",
+      "type": "Won",
+      "status": "Active",
+      "health": "On Track",
+      "client": "Catholic Care ",
+      "manager": "Brett",
+      "budget": 390117,
+      "effortBudget": 9680,
+      "actualEffort": 2244,
+      "startDate": "2025-07-07",
+      "endDate": "2026-07-01",
+      "progress": 20,
+      "updates": "The project requires a new BA resource to replace Stephen, who will be completing his role by the end of November 2025.",
+      "resources": [
+        {
+          "name": "Brett",
+          "role": "Project Manager",
+          "plannedHours": 3280,
+          "actualHours": 827,
+          "allocation": 100,
+          "startDate": "2025-07-07",
+          "endDate": "2026-07-01"
+        },
+        {
+          "name": "Pamela",
+          "role": "Change Manager",
+          "plannedHours": 1920,
+          "actualHours": 530,
+          "allocation": 50,
+          "startDate": "2025-09-08",
+          "endDate": "2026-05-28"
+        },
+        {
+          "name": "Stephen",
+          "role": "Business Analyst",
+          "plannedHours": 3280,
+          "actualHours": 0,
+          "allocation": 10,
+          "startDate": "2025-07-21",
+          "endDate": "2026-02-13"
+        },
+        {
+          "name": "Renee",
+          "role": "Other",
+          "plannedHours": 800,
+          "actualHours": 87,
+          "allocation": 25,
+          "startDate": "2025-10-06",
+          "endDate": "2026-06-30"
+        },
+        {
+          "name": "Matt",
+          "role": "Tech Lead",
+          "plannedHours": 300,
+          "actualHours": 0,
+          "allocation": 40,
+          "startDate": "2025-12-08",
+          "endDate": "2026-02-13"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "name": "J000345 BaptistCare NSW and ACT | Homecare Solution Architecture",
+      "type": "Won",
+      "status": "Active",
+      "health": "On Track",
+      "client": "aptistCare NSW and ACT",
+      "manager": "Jayson",
+      "budget": 460500,
+      "effortBudget": 1960,
+      "actualEffort": 1663,
+      "startDate": "2025-01-30",
+      "endDate": "2026-01-31",
+      "progress": 80,
+      "updates": "Project on-track with approved PCR",
+      "resources": [
+        {
+          "name": "Jayson",
+          "role": "Project Manager",
+          "plannedHours": 1960,
+          "actualHours": 0,
+          "allocation": 80,
+          "startDate": "2025-01-30",
+          "endDate": "2026-01-31"
+        }
+      ],
+      "collapsed": true
+    },
+    {
+      "name": "J000363 - Carrington Data Analyst",
+      "type": "Won",
+      "status": "Active",
+      "health": "On Track",
+      "client": "Carrington",
+      "manager": "Jayson",
+      "budget": 37500,
+      "effortBudget": 200,
+      "actualEffort": 62,
+      "startDate": "2025-11-17",
+      "endDate": "2026-01-30",
+      "progress": 25,
+      "updates": "",
+      "resources": [
+        {
+          "name": "Matt",
+          "role": "Tech Lead",
+          "plannedHours": 200,
+          "actualHours": 62,
+          "allocation": 40,
+          "startDate": "2025-11-17",
+          "endDate": "2026-01-30"
+        }
+      ]
+    }
+  ],
+  "view": "biweekly",
+  "exportDate": "2025-12-28T11:00:55.757Z",
+  "version": "4.0"
+}
