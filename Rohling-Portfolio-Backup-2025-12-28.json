@@ -130,7 +130,10 @@
           "actualHours": 1576,
           "allocation": 100,
           "startDate": "2025-01-24",
-          "endDate": "2025-12-12"
+          "endDate": "2025-12-12",
+          "dayOverrides": {
+            "2025-12-01": 8
+          }
         },
         {
           "name": "Kaman",
@@ -432,6 +435,6 @@
     }
   ],
   "view": "biweekly",
-  "exportDate": "2025-12-28T11:00:55.757Z",
+  "exportDate": "2025-12-28T11:56:47.256Z",
   "version": "4.0"
 }
