@@ -2220,13 +2220,16 @@
         }
         
         async function loadFromServer() {
-            const response = await fetch('Portfolio-data.json');
+            // Add timestamp to bypass cache
+            const cacheBuster = '?t=' + new Date().getTime();
+            const response = await fetch('Portfolio-data.json' + cacheBuster);
             if (!response.ok) {
                 throw new Error('Could not fetch Portfolio-data.json');
             }
             const data = await response.json();
             projects = data.projects || [];
             view = data.view || 'monthly';
+            console.log('Loaded', projects.length, 'projects from server with exportDate:', data.exportDate);
             // Store timestamp for auto-refresh
             if (data.exportDate) {
                 lastDataTimestamp = data.exportDate;
