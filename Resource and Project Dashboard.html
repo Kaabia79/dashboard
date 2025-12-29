@@ -2220,9 +2220,9 @@
         }
         
         async function loadFromServer() {
-            const response = await fetch('portfolio-data.json');
+            const response = await fetch('Portfolio-data.json');
             if (!response.ok) {
-                throw new Error('Could not fetch portfolio-data.json');
+                throw new Error('Could not fetch Portfolio-data.json');
             }
             const data = await response.json();
             projects = data.projects || [];
@@ -2241,7 +2241,7 @@
 
         async function checkForUpdates() {
             try {
-                const response = await fetch('portfolio-data.json?cache=' + Date.now());
+                const response = await fetch('Portfolio-data.json?cache=' + Date.now());
                 if (!response.ok) return;
                 
                 const data = await response.json();
@@ -2282,7 +2282,7 @@
             if (notification) {
                 notification.remove();
             }
-            fetch('portfolio-data.json?cache=' + Date.now())
+            fetch('Portfolio-data.json?cache=' + Date.now())
                 .then(r => r.json())
                 .then(data => lastDataTimestamp = data.exportDate);
         }
