@@ -1441,7 +1441,7 @@
             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                 <button onclick="addProject()">+ Add Project</button>
                 <button onclick="exportData()" class="btn-export">Export Data</button>
-                <button onclick="importData()" class="btn-export">Import Data</button>
+                <button onclick="document.getElementById('importFileInput').click()" class="btn-export">Import Data</button>
                 <button onclick="exportToPDF()" class="btn-export">Export PDF</button>
             </div>
             
@@ -2213,6 +2213,9 @@
                     
                     render();
                     console.log('Dashboard initialized - Role:', userRole, '- Projects:', projects.length);
+                    
+                    // Start auto-refresh checks
+                    startAutoRefresh();
                 });
         }
         
@@ -2224,8 +2227,69 @@
             const data = await response.json();
             projects = data.projects || [];
             view = data.view || 'monthly';
+            // Store timestamp for auto-refresh
+            if (data.exportDate) {
+                lastDataTimestamp = data.exportDate;
+            }
             // Also save to localStorage for offline access
             saveToLocalStorage();
+        }
+        
+        // AUTO-REFRESH FEATURE - Checks for updates every 5 minutes
+        let lastDataTimestamp = null;
+        let autoRefreshInterval = null;
+
+        async function checkForUpdates() {
+            try {
+                const response = await fetch('portfolio-data.json?cache=' + Date.now());
+                if (!response.ok) return;
+                
+                const data = await response.json();
+                const currentTimestamp = data.exportDate;
+                
+                if (lastDataTimestamp === null) {
+                    lastDataTimestamp = currentTimestamp;
+                } else if (lastDataTimestamp !== currentTimestamp) {
+                    showUpdateNotification();
+                }
+            } catch (err) {
+                console.log('Update check failed:', err.message);
+            }
+        }
+
+        function showUpdateNotification() {
+            if (document.getElementById('updateNotification')) return;
+            
+            const notification = document.createElement('div');
+            notification.id = 'updateNotification';
+            notification.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 10000; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 30px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); font-family: Segoe UI, sans-serif; animation: slideIn 0.5s ease-out;';
+            
+            notification.innerHTML = '<div style="display: flex; align-items: center; gap: 15px;"><div style="font-size: 32px;">&#128260;</div><div><div style="font-weight: 700; font-size: 16px; margin-bottom: 5px;">New Data Available!</div><div style="font-size: 13px; opacity: 0.9; margin-bottom: 10px;">The dashboard has been updated</div><button onclick="reloadDashboard()" style="background: white; color: #667eea; border: none; padding: 8px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 13px;">Refresh Now</button><button onclick="dismissNotification()" style="background: transparent; color: white; border: 1px solid white; padding: 8px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 13px; margin-left: 10px;">Dismiss</button></div></div>';
+            
+            const style = document.createElement('style');
+            style.textContent = '@keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }';
+            document.head.appendChild(style);
+            
+            document.body.appendChild(notification);
+        }
+
+        function reloadDashboard() {
+            window.location.reload(true);
+        }
+
+        function dismissNotification() {
+            const notification = document.getElementById('updateNotification');
+            if (notification) {
+                notification.remove();
+            }
+            fetch('portfolio-data.json?cache=' + Date.now())
+                .then(r => r.json())
+                .then(data => lastDataTimestamp = data.exportDate);
+        }
+
+        function startAutoRefresh() {
+            autoRefreshInterval = setInterval(checkForUpdates, 300000);
+            console.log('Auto-refresh started - checking every 5 minutes');
         }
         
         function registerEditHandlers() {
