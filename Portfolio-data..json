@@ -448,6 +448,118 @@
     }
   ],
   "view": "quarterly",
-  "exportDate": "2025-12-29T03:37:38.759Z",
+  "resourceLeave": {
+    "Allanah": [
+      {
+        "startDate": "2025-12-15",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      }
+    ],
+    "Barbara": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      }
+    ],
+    "EVORA (2 x RC)": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      }
+    ],
+    "Gerard": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      }
+    ],
+    "Ian": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      }
+    ],
+    "Jayson": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      }
+    ],
+    "Jack": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-11",
+        "type": "Annual Leave"
+      }
+    ],
+    "Jennifer": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      }
+    ],
+    "Kal": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      }
+    ],
+    "Kaman": [
+      {
+        "startDate": "2025-12-15",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      }
+    ],
+    "Kevin": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      },
+      {
+        "startDate": "2026-01-12",
+        "endDate": "2026-01-26",
+        "type": "Annual Leave"
+      }
+    ],
+    "Matt": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      }
+    ],
+    "Pamela": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-05",
+        "type": "Annual Leave"
+      }
+    ],
+    "Renee": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      }
+    ],
+    "Sharon": [
+      {
+        "startDate": "2025-12-20",
+        "endDate": "2026-01-04",
+        "type": "Annual Leave"
+      }
+    ]
+  },
+  "exportDate": "2025-12-29T04:11:00.766Z",
   "version": "4.0"
 }

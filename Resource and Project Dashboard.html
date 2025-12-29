@@ -2229,6 +2229,7 @@
             const data = await response.json();
             projects = data.projects || [];
             view = data.view || 'monthly';
+            resourceLeave = data.resourceLeave || {};  // LOAD LEAVE DATA FROM SERVER
             console.log('Loaded', projects.length, 'projects from server with exportDate:', data.exportDate);
             // Store timestamp for auto-refresh
             if (data.exportDate) {
@@ -2236,6 +2237,7 @@
             }
             // Also save to localStorage for offline access
             saveToLocalStorage();
+            saveLeaveToStorage();  // SAVE LEAVE TO LOCALSTORAGE
         }
         
         // AUTO-REFRESH FEATURE - Checks for updates every 5 minutes
@@ -3359,10 +3361,11 @@
             const timestamp = new Date().toISOString().replace(/[:.]/g, '-').split('T')[0];
             const filename = `Rohling-Portfolio-Backup-${timestamp}.json`;
             
-            // Export all data
+            // Export all data INCLUDING LEAVE
             const exportObj = {
                 projects: projects,
                 view: view,
+                resourceLeave: resourceLeave,  // ADD LEAVE DATA
                 exportDate: new Date().toISOString(),
                 version: '4.0'
             };
@@ -3393,16 +3396,18 @@
                         const data = JSON.parse(e.target.result);
                         projects = data.projects || [];
                         view = data.view || 'monthly';
+                        resourceLeave = data.resourceLeave || {};  // IMPORT LEAVE DATA
                         saveToLocalStorage();
+                        saveLeaveToStorage();  // SAVE LEAVE TO LOCALSTORAGE
                         
                         // Refresh all views
                         render();
                         populateCalendarResourceSelect();
                         renderCalendar();
                         
-                        alert(' Data imported successfully!\n\nAll your projects, resources, and day-specific hours have been restored.');
+                        alert('Data imported successfully!\n\nAll your projects, resources, leave records, and day-specific hours have been restored.');
                     } catch (err) {
-                        alert(' Error importing data: ' + err.message + '\n\nPlease make sure you selected a valid backup file.');
+                        alert('Error importing data: ' + err.message + '\n\nPlease make sure you selected a valid backup file.');
                     }
                 };
                 reader.readAsText(file);
@@ -4822,7 +4827,11 @@
                         const chip = document.createElement('div');
                         chip.className = 'project-chip';
                         chip.style.background = getProjectColor(alloc.projectIndex, { type: alloc.projectType });
-                        chip.textContent = alloc.projectCode;
+                        // Show CODE | NAME format
+                        const projectShortName = alloc.projectName.includes('|') 
+                            ? alloc.projectName.split('|')[1].trim().substring(0, 20)
+                            : alloc.projectName.substring(0, 20);
+                        chip.textContent = `${alloc.projectCode} | ${projectShortName}`;
                         chip.title = `${alloc.projectName}\n${displayHours.toFixed(1)}h`;
                         
                         // Make clickable for PM and Admin
