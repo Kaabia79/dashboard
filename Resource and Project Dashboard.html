@@ -1361,7 +1361,7 @@
             
             <div style="margin-bottom: 20px;">
                 <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Select Your Role</label>
-                <select id="userRole" style="width: 100%; padding: 12px; border: 2px solid #E0E0E0; border-radius: 8px; font-size: 14px;">
+                <select id="userRole" onchange="updatePasswordField()" style="width: 100%; padding: 12px; border: 2px solid #E0E0E0; border-radius: 8px; font-size: 14px;">
                     <option value="">-- Select Role --</option>
                     <option value="pm">Project Manager</option>
                     <option value="team">Team Member</option>
@@ -1369,9 +1369,13 @@
                 </select>
             </div>
             
-            <div style="margin-bottom: 20px;">
+            <div id="passwordField" style="margin-bottom: 20px;">
                 <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Access Code</label>
-                <input type="password" id="accessCode" placeholder="Team Members: No password needed" style="width: 100%; padding: 12px; border: 2px solid #E0E0E0; border-radius: 8px; font-size: 14px;">
+                <input type="password" id="accessCode" placeholder="Enter access code" style="width: 100%; padding: 12px; border: 2px solid #E0E0E0; border-radius: 8px; font-size: 14px;">
+            </div>
+            
+            <div id="teamMessage" style="display: none; margin-bottom: 20px; padding: 12px; background: #E8F5E9; border-left: 4px solid #4CAF50; border-radius: 4px;">
+                <p style="margin: 0; color: #2E7D32; font-size: 13px; font-weight: 600;">Team Members: No password required - just click "Access Dashboard" below</p>
             </div>
             
             <button onclick="handleLogin()" style="width: 100%; padding: 14px; background: #0052CC; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;">
@@ -1383,9 +1387,8 @@
             </div>
             
             <div style="margin-top: 25px; padding-top: 25px; border-top: 1px solid #E0E0E0; font-size: 12px; color: #999; text-align: center;">
-                <div style="margin-bottom: 8px; font-weight: 600; color: #666;">Access Information:</div>
-                <div style="color: #4CAF50; font-weight: 600;">Team Members: No password required - just select role and click Access</div>
-                <div style="margin-top: 6px; color: #666;">Project Managers and Administrators: Password required</div>
+                <div style="margin-bottom: 8px; font-weight: 600; color: #666;">Access Codes:</div>
+
             </div>
         </div>
     </div>
@@ -1399,10 +1402,10 @@
             <div class="title">Portfolio Resource Dashboard v3.0</div>
             <div style="display: flex; gap: 10px; align-items: center;">
                 <button onclick="exportData()" style="padding: 8px 16px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 12px;">
-                    Export Data
+                     Export Data
                 </button>
                 <button onclick="document.getElementById('importFileInput').click()" style="padding: 8px 16px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 12px;">
-                    Import Data
+                     Import Data
                 </button>
                 <input type="file" id="importFileInput" accept=".json" style="display: none;" onchange="importData(event)">
             </div>
@@ -1411,26 +1414,23 @@
         <!-- TAB NAVIGATION -->
         <div class="tab-navigation">
             <button class="tab-button active" onclick="switchTab('portfolio')">
-                Portfolio View
+                 Portfolio View
             </button>
             <button class="tab-button" onclick="switchTab('calendar')">
-                Resource Calendar
+                 Resource Calendar
             </button>
             <button class="tab-button" onclick="switchTab('executive')">
-                Executive Summary
-            </button>
-            <button class="tab-button" onclick="switchTab('ai')">
-                AI Forecasting
+                 Executive Summary
             </button>
             <button class="tab-button" onclick="switchTab('resourceforecast')">
-                Resource Forecast
+                 Resource Forecast
             </button>
             <button class="tab-button" onclick="switchTab('resourceavailability')">
-                Resource Availability
+                 Resource Availability
             </button>
 
             <button class="tab-button" onclick="switchTab('whatif')">
-                What-If Scenarios
+                 What-If Scenarios
             </button>
         </div>
         
@@ -1481,7 +1481,7 @@
         
         <!-- Resource Utilization Dashboard -->
         <div class="utilization-dashboard" id="utilizationDashboard">
-            <h3>ðŸ“Š Resource Utilization Overview</h3>
+            <h3> Resource Utilization Overview</h3>
             <div class="utilization-grid" id="utilizationGrid"></div>
         </div>
         
@@ -1640,12 +1640,12 @@
                 <h2 style="margin: 0;">Resource Calendar</h2>
             </div>
             <div class="calendar-nav">
-                <button onclick="changeCalendarMonth(-1)">â† Previous</button>
+                <button onclick="changeCalendarMonth(-1)"> Previous</button>
                 <div style="text-align: center;">
                     <span id="calendarMonthYear" style="font-size: 18px; font-weight: 600; display: block;">November 2025</span>
                     <span id="calendarDateRange" style="font-size: 12px; color: #666; display: block; margin-top: 4px;"></span>
                 </div>
-                <button onclick="changeCalendarMonth(1)">Next â†’</button>
+                <button onclick="changeCalendarMonth(1)">Next </button>
             </div>
             <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
                 <div style="display: flex; gap: 10px; align-items: center;">
@@ -1666,13 +1666,13 @@
         
         <!-- Resource Summary Section -->
         <div id="resourceSummarySection" style="display: none; margin: 20px 0; padding: 20px; background: white; border-radius: 8px; border: 2px solid #0052CC;">
-            <h3 style="margin: 0 0 15px 0; color: #0052CC;">ðŸ“Š Resource Summary</h3>
+            <h3 style="margin: 0 0 15px 0; color: #0052CC;"> Resource Summary</h3>
             <div id="resourceSummaryContent"></div>
         </div>
         
         <!-- PM Edit Hint -->
         <div id="pmEditHint" style="display: none; margin: 10px 0; padding: 12px 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; color: white; font-size: 13px; box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);">
-            <strong>ðŸ’¡ Quick Edit Tip:</strong> Click any project chip in the calendar below to quickly adjust allocation percentages!
+            <strong> Quick Edit Tip:</strong> Click any project chip in the calendar below to quickly adjust allocation percentages!
         </div>
         
         </div>
@@ -1684,31 +1684,31 @@
     
     <!-- EXECUTIVE SUMMARY TAB -->
     <div id="executiveTab" class="tab-content">
-        <h2 style="margin-bottom: 20px; color: #0052CC;">ðŸ“Š Executive Dashboard</h2>
+        <h2 style="margin-bottom: 20px; color: #0052CC;"> Executive Dashboard</h2>
         
         <div class="exec-grid" id="execMetrics"></div>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
             <div class="exec-card danger">
-                <h3>ðŸ”´ Critical Risks</h3>
+                <h3> Critical Risks</h3>
                 <ul class="risk-list" id="criticalRisks"></ul>
             </div>
             
             <div class="exec-card warning">
-                <h3>ðŸŸ¡ Actions Required</h3>
+                <h3> Actions Required</h3>
                 <div id="actionsRequired"></div>
             </div>
         </div>
         
         <div class="exec-card" style="margin-top: 20px;">
-            <h3>ðŸ“ˆ Project Health Distribution</h3>
+            <h3> Project Health Distribution</h3>
             <div id="healthChart" style="margin-top: 15px;"></div>
         </div>
     </div>
     
     <!-- AI FORECASTING TAB -->
     <div id="resourceforecastTab" class="tab-content">
-        <h2 style="margin-bottom: 20px; color: #0052CC;">ðŸ“Š Resource Forecast</h2>
+        <h2 style="margin-bottom: 20px; color: #0052CC;"> Resource Forecast</h2>
         
         <div class="controls" style="margin-bottom: 20px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
             <div>
@@ -1736,7 +1736,7 @@
     
     
     <div id="resourceavailabilityTab" class="tab-content">
-        <h2 style="margin-bottom: 20px; color: #0052CC;">ðŸ‘¥ Resource Availability by Role</h2>
+        <h2 style="margin-bottom: 20px; color: #0052CC;"> Resource Availability by Role</h2>
         
         <div class="controls" style="margin-bottom: 20px;">
             <label style="margin-right: 10px; font-weight: 600;">Filter by Role:</label>
@@ -1762,7 +1762,7 @@
     </div>
     
     <div id="whatifTab" class="tab-content">
-        <h2 style="margin-bottom: 20px; color: #0052CC;">ðŸŽ² AI What-If Scenario Planner</h2>
+        <h2 style="margin-bottom: 20px; color: #0052CC;"> AI What-If Scenario Planner</h2>
         
         <div style="margin-bottom: 20px;">
             <label style="font-weight: 600; margin-right: 10px;">Select Project:</label>
@@ -1862,13 +1862,13 @@
                     
                     <div style="background: #FFF3E0; padding: 12px; border-radius: 6px; margin-top: 15px; border-left: 4px solid #FF9800;">
                         <div style="font-size: 12px; color: #E65100;">
-                            <strong>ðŸ’¡ Tip:</strong> Allocation percentage affects daily hours. Adjust based on resource availability across multiple projects.
+                            <strong> Tip:</strong> Allocation percentage affects daily hours. Adjust based on resource availability across multiple projects.
                         </div>
                     </div>
                     
                     <div class="form-actions" style="margin-top: 20px;">
                         <button type="button" class="btn-cancel" onclick="closeEditAllocationModal()">Cancel</button>
-                        <button type="button" id="fullSaveBtn" style="background: #0052CC; color: white; padding: 10px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">ðŸ’¾ Save Changes</button>
+                        <button type="button" id="fullSaveBtn" style="background: #0052CC; color: white; padding: 10px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;"> Save Changes</button>
                     </div>
                 </form>
             </div>
@@ -1885,7 +1885,7 @@
             <div style="padding: 20px;">
                 <div style="background: #E8F5E9; padding: 12px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #4CAF50;">
                     <div style="font-weight: 600; font-size: 14px; color: #2E7D32; margin-bottom: 6px;">
-                        ðŸ“… <span id="dayEditDate"></span>
+                         <span id="dayEditDate"></span>
                     </div>
                     <div style="font-size: 13px; color: #555; margin-bottom: 3px;">
                         <strong>Resource:</strong> <span id="dayEditResourceName"></span>
@@ -1897,7 +1897,7 @@
                 
                 <div style="background: #FFF3E0; padding: 12px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #FF9800;">
                     <div style="font-size: 12px; color: #E65100; margin-bottom: 8px;">
-                        <strong>â„¹ï¸ Note:</strong> This adjusts the allocation percentage for this project, which affects ALL days in the project period.
+                        <strong> Note:</strong> This adjusts the allocation percentage for this project, which affects ALL days in the project period.
                     </div>
                     <div style="font-size: 11px; color: #666;">
                         To edit specific dates, use the full allocation editor from the Resource Summary panel.
@@ -1937,7 +1937,7 @@
                     
                     <div class="form-actions" style="margin-top: 20px;">
                         <button type="button" class="btn-cancel" onclick="closeEditDayModal()">Cancel</button>
-                        <button type="button" id="quickSaveBtn" onclick="handleQuickSave()" style="background: #4CAF50; color: white; padding: 10px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">âš¡ Quick Save</button>
+                        <button type="button" id="quickSaveBtn" onclick="handleQuickSave()" style="background: #4CAF50; color: white; padding: 10px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;"> Quick Save</button>
                     </div>
                 </form>
             </div>
@@ -1952,6 +1952,20 @@
             'team': 'RhTeam#2025&Access',
             'admin': 'RhAdmin!2025*Control'
         };
+        
+        function updatePasswordField() {
+            const role = document.getElementById('userRole').value;
+            const passwordField = document.getElementById('passwordField');
+            const teamMessage = document.getElementById('teamMessage');
+            
+            if (role === 'team') {
+                passwordField.style.display = 'none';
+                teamMessage.style.display = 'block';
+            } else {
+                passwordField.style.display = 'block';
+                teamMessage.style.display = 'none';
+            }
+        }
         
         function handleLogin() {
             const role = document.getElementById('userRole').value;
@@ -1975,7 +1989,7 @@
                 return;
             }
             
-            // PM and Admin require password
+            // PM and Admin need password
             if (ACCESS_CODES[role] === code) {
                 userRole = role;
                 document.getElementById('loginScreen').style.display = 'none';
@@ -2044,10 +2058,10 @@
                 badge.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 10px;">
                         <span style="background: #FF9800; color: white; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 600;">
-                            ðŸ”‘ ADMIN MODE
+                             ADMIN MODE
                         </span>
                         <button onclick="showAdminPanel()" style="background: #7E57C2; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px;">
-                            âš™ï¸ Settings
+                             Settings
                         </button>
                     </div>
                 `;
@@ -2062,11 +2076,11 @@
             
             modal.innerHTML = `
                 <div style="background: white; border-radius: 16px; padding: 30px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;" onclick="event.stopPropagation()">
-                    <h2 style="margin: 0 0 20px 0; color: #0052CC;">âš™ï¸ Admin Settings</h2>
+                    <h2 style="margin: 0 0 20px 0; color: #0052CC;"> Admin Settings</h2>
                     
                     <!-- ACCESS CODE MANAGEMENT -->
                     <div style="background: #F5F7FA; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
-                        <h3 style="margin: 0 0 15px 0; font-size: 16px; color: #333;">ðŸ” Access Code Management</h3>
+                        <h3 style="margin: 0 0 15px 0; font-size: 16px; color: #333;"> Access Code Management</h3>
                         
                         <div style="display: grid; gap: 15px;">
                             <div>
@@ -2088,13 +2102,13 @@
                         </button>
                         
                         <div style="margin-top: 10px; padding: 12px; background: #FFF3E0; border-radius: 6px; font-size: 12px; color: #E65100;">
-                            âš ï¸ Note: Code changes only apply to this session. To make permanent, update the HTML file.
+                             Note: Code changes only apply to this session. To make permanent, update the HTML file.
                         </div>
                     </div>
                     
                     <!-- USER AUDIT LOG -->
                     <div style="background: #F5F7FA; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
-                        <h3 style="margin: 0 0 15px 0; font-size: 16px; color: #333;">ðŸ“Š Session Info</h3>
+                        <h3 style="margin: 0 0 15px 0; font-size: 16px; color: #333;"> Session Info</h3>
                         <div style="font-size: 13px; line-height: 1.8;">
                             <div><strong>Current Role:</strong> Administrator</div>
                             <div><strong>Login Time:</strong> ${new Date().toLocaleString()}</div>
@@ -2106,24 +2120,24 @@
                     
                     <!-- DATA MANAGEMENT -->
                     <div style="background: #F5F7FA; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
-                        <h3 style="margin: 0 0 15px 0; font-size: 16px; color: #333;">ðŸ’¾ Data Management</h3>
+                        <h3 style="margin: 0 0 15px 0; font-size: 16px; color: #333;"> Data Management</h3>
                         <div style="display: grid; gap: 10px;">
                             <button onclick="exportData()" style="padding: 10px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
-                                ðŸ“¥ Export Full Backup (JSON)
+                                 Export Full Backup (JSON)
                             </button>
                             <button onclick="document.getElementById('importFileAdmin').click()" style="padding: 10px; background: #2196F3; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
-                                ðŸ“¤ Import Data (JSON)
+                                 Import Data (JSON)
                             </button>
                             <input type="file" id="importFileAdmin" accept=".json" style="display: none;" onchange="importData(event)">
                             <button onclick="clearAllData()" style="padding: 10px; background: #EF5350; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
-                                ðŸ—‘ï¸ Clear All Data (Requires Confirmation)
+                                 Clear All Data (Requires Confirmation)
                             </button>
                         </div>
                     </div>
                     
                     <!-- SYSTEM INFO -->
                     <div style="background: #F5F7FA; padding: 20px; border-radius: 12px;">
-                        <h3 style="margin: 0 0 15px 0; font-size: 16px; color: #333;">â„¹ï¸ System Information</h3>
+                        <h3 style="margin: 0 0 15px 0; font-size: 16px; color: #333;"> System Information</h3>
                         <div style="font-size: 12px; line-height: 1.8; color: #666;">
                             <div><strong>Dashboard Version:</strong> 5.5 (Role-Based Access)</div>
                             <div><strong>Storage Key:</strong> ${STORAGE_KEY}</div>
@@ -2156,47 +2170,62 @@
                 ACCESS_CODES.team = newTeam;
                 ACCESS_CODES.admin = newAdmin;
                 
-                alert('âœ… Access codes updated successfully!\n\nNew codes:\nPM: ' + newPM + '\nTeam: ' + newTeam + '\nAdmin: ' + newAdmin);
+                alert(' Access codes updated successfully!\n\nNew codes:\nPM: ' + newPM + '\nTeam: ' + newTeam + '\nAdmin: ' + newAdmin);
             }
         }
         
         function clearAllData() {
-            const confirmed = prompt('âš ï¸ WARNING: This will delete ALL project data!\n\nType "DELETE ALL DATA" to confirm:', '');
+            const confirmed = prompt(' WARNING: This will delete ALL project data!\n\nType "DELETE ALL DATA" to confirm:', '');
             
             if (confirmed === 'DELETE ALL DATA') {
                 localStorage.removeItem(STORAGE_KEY);
                 localStorage.removeItem(LEAVE_STORAGE_KEY);
-                alert('âœ… All data cleared. Page will reload.');
+                alert(' All data cleared. Page will reload.');
                 location.reload();
             } else {
-                alert('âŒ Deletion cancelled');
+                alert(' Deletion cancelled');
             }
         }
         
         function initializeDashboard() {
-            // Try to load from external file first
-            loadDataFromFile(function(loadedFromFile) {
-                if (!loadedFromFile) {
-                    // Fallback to localStorage
+            // Try to load data from server first (portfolio-data.json)
+            loadFromServer()
+                .then(() => {
+                    console.log('Loaded data from server');
+                })
+                .catch(err => {
+                    console.log('Could not load from server, using localStorage:', err.message);
                     loadFromLocalStorage();
-                }
-                
-                loadLeaveFromStorage();
-            populateCalendarResourceSelect();
-            populateAIProjectSelect();
-            populateWhatIfProjectSelect();
-            initializeDateRangePickers();
-            
-            document.querySelectorAll('.btn-view').forEach(b => b.classList.remove('active'));
-            const viewBtn = document.getElementById('btn' + view.charAt(0).toUpperCase() + view.slice(1));
-            if (viewBtn) viewBtn.classList.add('active');
-            
-                // Register event handlers for edit modals
-                registerEditHandlers();
-                
-                render();
-                console.log('✅ Dashboard initialized - Role:', userRole, '- Projects:', projects.length);
-            }); // End loadDataFromFile callback
+                })
+                .finally(() => {
+                    loadLeaveFromStorage();
+                    populateCalendarResourceSelect();
+                    populateAIProjectSelect();
+                    populateWhatIfProjectSelect();
+                    initializeDateRangePickers();
+                    
+                    document.querySelectorAll('.btn-view').forEach(b => b.classList.remove('active'));
+                    const viewBtn = document.getElementById('btn' + view.charAt(0).toUpperCase() + view.slice(1));
+                    if (viewBtn) viewBtn.classList.add('active');
+                    
+                    // Register event handlers for edit modals
+                    registerEditHandlers();
+                    
+                    render();
+                    console.log('Dashboard initialized - Role:', userRole, '- Projects:', projects.length);
+                });
+        }
+        
+        async function loadFromServer() {
+            const response = await fetch('portfolio-data.json');
+            if (!response.ok) {
+                throw new Error('Could not fetch portfolio-data.json');
+            }
+            const data = await response.json();
+            projects = data.projects || [];
+            view = data.view || 'monthly';
+            // Also save to localStorage for offline access
+            saveToLocalStorage();
         }
         
         function registerEditHandlers() {
@@ -2240,7 +2269,7 @@
                         saveToLocalStorage();
                         renderCalendar();
                         showResourceSummary(currentEditResource);
-                        showNotification('âœ… Resource allocation updated successfully!', 'success');
+                        showNotification(' Resource allocation updated successfully!', 'success');
                         closeEditAllocationModal();
                     } else {
                         alert('Error: Could not find resource to update');
@@ -2305,7 +2334,7 @@
                         
                         // Show success message
                         showNotification(
-                            `âœ… Updated ${projectName}: ${oldDailyHours.toFixed(1)}h â†’ ${newDailyHours.toFixed(1)}h/day (${newAllocation}%)`, 
+                            ` Updated ${projectName}: ${oldDailyHours.toFixed(1)}h  ${newDailyHours.toFixed(1)}h/day (${newAllocation}%)`, 
                             'success'
                         );
                         
@@ -2836,56 +2865,10 @@
     }
 ];
         let view = 'quarterly';
-
-        // ===== AUTO-LOAD FROM EXTERNAL JSON =====
-        const AUTO_LOAD_ENABLED = true;
-        const DATA_FILE_URL = './Dashboard_Data.json';
-        
-        function loadDataFromFile(callback) {
-            if (!AUTO_LOAD_ENABLED) {
-                console.log('Auto-load disabled');
-                callback(false);
-                return;
-            }
-            
-            console.log('🔄 Attempting to load data from:', DATA_FILE_URL);
-            
-            fetch(DATA_FILE_URL)
-                .then(function(response) {
-                    if (!response.ok) {
-                        console.warn('⚠️ Data file not found (', response.status, ') - using localStorage');
-                        return null;
-                    }
-                    return response.json();
-                })
-                .then(function(data) {
-                    if (data && data.projects) {
-                        projects = data.projects;
-                        console.log('✅ Loaded', projects.length, 'projects from external file');
-                        
-                        if (data.view) {
-                            view = data.view;
-                        }
-                        
-                        // Save to localStorage as cache
-                        saveToLocalStorage();
-                        callback(true);
-                    } else {
-                        console.log('📦 No valid data in file, using localStorage');
-                        callback(false);
-                    }
-                })
-                .catch(function(error) {
-                    console.warn('⚠️ Error loading file:', error.message);
-                    console.log('📦 Using localStorage instead');
-                    callback(false);
-                });
-        }
-
         let editingProject = -1;
         let editingResource = { projIdx: -1, resIdx: -1 };
         
-        const STORAGE_KEY = 'rohling_portfolio_teams_v5'; // NEW KEY TO FORCE DATA RELOAD
+        const STORAGE_KEY = 'rohling_portfolio_v3_1_fresh'; // NEW KEY TO FORCE DATA RELOAD
         
         // REAL DATA FROM JSON
         const sampleProjects = [
@@ -3329,7 +3312,7 @@
             URL.revokeObjectURL(url);
             
             // Show confirmation
-            showNotification(`âœ… Data exported: ${filename}`, 'success');
+            showNotification(` Data exported: ${filename}`, 'success');
             
             console.log('Exported data:', exportObj);
         }
@@ -3350,9 +3333,9 @@
                         populateCalendarResourceSelect();
                         renderCalendar();
                         
-                        alert('âœ… Data imported successfully!\n\nAll your projects, resources, and day-specific hours have been restored.');
+                        alert(' Data imported successfully!\n\nAll your projects, resources, and day-specific hours have been restored.');
                     } catch (err) {
-                        alert('âŒ Error importing data: ' + err.message + '\n\nPlease make sure you selected a valid backup file.');
+                        alert(' Error importing data: ' + err.message + '\n\nPlease make sure you selected a valid backup file.');
                     }
                 };
                 reader.readAsText(file);
@@ -3620,7 +3603,7 @@
                             <strong>${res.totalPlanned}</strong> hours planned
                         </div>
                         <div class="utilization-projects">
-                            ${res.assignments.map(a => `<span title="${a.startDate} to ${a.endDate}">${a.project} (${a.allocation}% â€¢ ${a.hours}h)</span>`).join('')}
+                            ${res.assignments.map(a => `<span title="${a.startDate} to ${a.endDate}">${a.project} (${a.allocation}%  ${a.hours}h)</span>`).join('')}
                         </div>
                     </div>
                 `;
@@ -3656,7 +3639,7 @@
                             <div class="info-header">
                                 <div class="info-header-top" onclick="toggleCollapse(${idx})">
                                     <div class="info-header-left">
-                                        <span class="collapse-arrow">${collapsed ? 'â–¶' : 'â–¼'}</span>
+                                        <span class="collapse-arrow">${collapsed ? '' : ''}</span>
                                         <div class="project-name">${proj.name}</div>
                                         <span class="project-type-badge type-${proj.type.toLowerCase()}">${proj.type}</span>
                                     </div>
@@ -3764,7 +3747,7 @@
                                             ${timeline.map(() => '<div class="grid-cell" style="flex: 1"></div>').join('')}
                                         </div>
                                         <div class="resource-bar ${roleClass} ${isOverBudget ? 'over-budget' : ''}" style="left: ${resPos.left}%; width: ${resPos.width}%">
-                                            <span class="resource-bar-label">${res.name} â€¢ ${res.plannedHours}h â€¢ ${res.allocation}%</span>
+                                            <span class="resource-bar-label">${res.name}  ${res.plannedHours}h  ${res.allocation}%</span>
                                             <div class="resource-allocation-overlay" style="width: ${res.allocation}%"></div>
                                         </div>
                                     </div>
@@ -4423,7 +4406,7 @@
             
             // Show success message
             showNotification(
-                `âœ… Updated ${projectName} on ${dateKey}: ${oldDailyHours.toFixed(1)}h â†’ ${newDailyHours.toFixed(1)}h`, 
+                ` Updated ${projectName} on ${dateKey}: ${oldDailyHours.toFixed(1)}h  ${newDailyHours.toFixed(1)}h`, 
                 'success'
             );
             
@@ -4738,7 +4721,7 @@
                     holidayDiv.className = 'day-allocation';
                     holidayDiv.style.background = '#E3F2FD';
                     holidayDiv.style.color = '#1976D2';
-                    holidayDiv.textContent = 'ðŸŽ‰ Holiday';
+                    holidayDiv.textContent = ' Holiday';
                     holidayDiv.title = holiday;
                     dayDiv.appendChild(holidayDiv);
                 } else if (resourceLeave) {
@@ -4746,7 +4729,7 @@
                     leaveDiv.className = 'day-allocation';
                     leaveDiv.style.background = '#FFF3E0';
                     leaveDiv.style.color = '#F57C00';
-                    leaveDiv.textContent = 'ðŸ–ï¸ Leave';
+                    leaveDiv.textContent = ' Leave';
                     leaveDiv.title = resourceLeave;
                     dayDiv.appendChild(leaveDiv);
                 } else if (dayAllocations.length > 0 && !isWeekend) {
@@ -4772,9 +4755,8 @@
                         const chip = document.createElement('div');
                         chip.className = 'project-chip';
                         chip.style.background = getProjectColor(alloc.projectIndex, { type: alloc.projectType });
-                        // Show full project name instead of just code
-                        chip.textContent = alloc.projectName;
-                        chip.title = `${alloc.projectName}\n${displayHours.toFixed(1)}h (${alloc.allocation}% allocation)`;
+                        chip.textContent = alloc.projectCode;
+                        chip.title = `${alloc.projectName}\n${displayHours.toFixed(1)}h`;
                         
                         // Make clickable for PM and Admin
                         if (userRole === 'pm' || userRole === 'admin') {
@@ -5075,7 +5057,7 @@
             });
             
             if (criticalProjects.length === 0) {
-                risks.innerHTML = '<li class="risk-item">âœ… No critical risks identified</li>';
+                risks.innerHTML = '<li class="risk-item"> No critical risks identified</li>';
             } else {
                 risks.innerHTML = criticalProjects.map(risk => 
                     `<li class="risk-item ${risk.severity}">${risk.name}<br></li>`
@@ -5089,15 +5071,15 @@
             
             projects.forEach(proj => {
                 if (proj.progress === 100 && proj.status === 'Active') {
-                    actionItems.push(`â–¡ Close ${getProjectDisplayName(proj.name)} - ${proj.manager}`);
+                    actionItems.push(` Close ${getProjectDisplayName(proj.name)} - ${proj.manager}`);
                 }
                 if ((proj.actualEffort || 0) > (proj.effortBudget || 0) * 0.9) {
-                    actionItems.push(`â–¡ Review budget for ${getProjectDisplayName(proj.name)}`);
+                    actionItems.push(` Review budget for ${getProjectDisplayName(proj.name)}`);
                 }
             });
             
             if (actionItems.length === 0) {
-                actions.innerHTML = '<div class="action-item">âœ… No immediate actions required</div>';
+                actions.innerHTML = '<div class="action-item"> No immediate actions required</div>';
             } else {
                 actions.innerHTML = actionItems.map(action => 
                     `<div class="action-item">${action}</div>`
@@ -5128,9 +5110,9 @@
                         </div>
                     </div>
                     <div style="font-size: 12px; color: #666;">
-                        <div>ðŸŸ¢ ${onTrack} On Track (${((onTrack/total)*100).toFixed(0)}%)</div>
-                        <div>ðŸŸ¡ ${atRisk} At Risk (${((atRisk/total)*100).toFixed(0)}%)</div>
-                        <div>ðŸ”´ ${delayed} Delayed (${((delayed/total)*100).toFixed(0)}%)</div>
+                        <div> ${onTrack} On Track (${((onTrack/total)*100).toFixed(0)}%)</div>
+                        <div> ${atRisk} At Risk (${((atRisk/total)*100).toFixed(0)}%)</div>
+                        <div> ${delayed} Delayed (${((delayed/total)*100).toFixed(0)}%)</div>
                     </div>
                 </div>
             `;
@@ -5166,7 +5148,7 @@
             content.innerHTML = `
                 <!-- AI FORECAST CARD -->
                 <div class="ai-forecast-card">
-                    <h3>ðŸ¤– AI Budget Forecast for ${getProjectDisplayName(proj.name)}</h3>
+                    <h3> AI Budget Forecast for ${getProjectDisplayName(proj.name)}</h3>
                     <div class="ai-metric">
                         <div class="ai-metric-box">
                             <div class="ai-metric-label">Current Spend (AC)</div>
@@ -5199,7 +5181,7 @@
                 
                 <!-- EARNED VALUE MANAGEMENT METRICS -->
                 <div style="background: white; border-radius: 12px; padding: 25px; margin-bottom: 20px; border-left: 4px solid #2196F3;">
-                    <h3 style="margin: 0 0 15px 0; color: #1976D2;">ðŸ“Š Earned Value Management (EVM)</h3>
+                    <h3 style="margin: 0 0 15px 0; color: #1976D2;"> Earned Value Management (EVM)</h3>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
                         <div style="padding: 15px; background: #E3F2FD; border-radius: 8px;">
                             <div style="font-size: 11px; color: #666; margin-bottom: 5px;">Budget at Completion (BAC)</div>
@@ -5226,29 +5208,29 @@
                             <div style="font-size: 22px; font-weight: 700; color: ${analysis.costVariance >= 0 ? '#388E3C' : '#D32F2F'};">
                                 ${analysis.costVariance >= 0 ? '+' : ''}$${(analysis.costVariance / 1000).toFixed(0)}K
                             </div>
-                            <div style="font-size: 10px; color: #999; margin-top: 3px;">EV - AC ${analysis.costVariance >= 0 ? '(Under budget âœ“)' : '(Over budget âš ï¸)'}</div>
+                            <div style="font-size: 10px; color: #999; margin-top: 3px;">EV - AC ${analysis.costVariance >= 0 ? '(Under budget )' : '(Over budget )'}</div>
                         </div>
                         <div style="padding: 15px; background: ${analysis.scheduleVariance >= 0 ? '#E8F5E9' : '#FFEBEE'}; border-radius: 8px;">
                             <div style="font-size: 11px; color: #666; margin-bottom: 5px;">Schedule Variance (SV)</div>
                             <div style="font-size: 22px; font-weight: 700; color: ${analysis.scheduleVariance >= 0 ? '#388E3C' : '#D32F2F'};">
                                 ${analysis.scheduleVariance >= 0 ? '+' : ''}$${(analysis.scheduleVariance / 1000).toFixed(0)}K
                             </div>
-                            <div style="font-size: 10px; color: #999; margin-top: 3px;">EV - PV ${analysis.scheduleVariance >= 0 ? '(Ahead âœ“)' : '(Behind âš ï¸)'}</div>
+                            <div style="font-size: 10px; color: #999; margin-top: 3px;">EV - PV ${analysis.scheduleVariance >= 0 ? '(Ahead )' : '(Behind )'}</div>
                         </div>
                         <div style="padding: 15px; background: ${analysis.cpi >= 1.0 ? '#E8F5E9' : '#FFEBEE'}; border-radius: 8px;">
                             <div style="font-size: 11px; color: #666; margin-bottom: 5px;">Cost Performance Index (CPI)</div>
                             <div style="font-size: 22px; font-weight: 700; color: ${analysis.cpi >= 1.0 ? '#388E3C' : '#D32F2F'};">${analysis.cpi}</div>
-                            <div style="font-size: 10px; color: #999; margin-top: 3px;">EV Ã· AC ${analysis.cpi >= 1.0 ? '(Efficient âœ“)' : '(Inefficient âš ï¸)'}</div>
+                            <div style="font-size: 10px; color: #999; margin-top: 3px;">EV  AC ${analysis.cpi >= 1.0 ? '(Efficient )' : '(Inefficient )'}</div>
                         </div>
                         <div style="padding: 15px; background: ${analysis.spi >= 1.0 ? '#E8F5E9' : '#FFEBEE'}; border-radius: 8px;">
                             <div style="font-size: 11px; color: #666; margin-bottom: 5px;">Schedule Performance Index (SPI)</div>
                             <div style="font-size: 22px; font-weight: 700; color: ${analysis.spi >= 1.0 ? '#388E3C' : '#D32F2F'};">${analysis.spi}</div>
-                            <div style="font-size: 10px; color: #999; margin-top: 3px;">EV Ã· PV ${analysis.spi >= 1.0 ? '(On time âœ“)' : '(Delayed âš ï¸)'}</div>
+                            <div style="font-size: 10px; color: #999; margin-top: 3px;">EV  PV ${analysis.spi >= 1.0 ? '(On time )' : '(Delayed )'}</div>
                         </div>
                         <div style="padding: 15px; background: #F3E5F5; border-radius: 8px;">
                             <div style="font-size: 11px; color: #666; margin-bottom: 5px;">Estimate at Completion (EAC)</div>
                             <div style="font-size: 22px; font-weight: 700; color: #7B1FA2;">$${(analysis.estimateAtCompletion / 1000).toFixed(0)}K</div>
-                            <div style="font-size: 10px; color: #999; margin-top: 3px;">BAC Ã· CPI (Projected total)</div>
+                            <div style="font-size: 10px; color: #999; margin-top: 3px;">BAC  CPI (Projected total)</div>
                         </div>
                         <div style="padding: 15px; background: #E1F5FE; border-radius: 8px;">
                             <div style="font-size: 11px; color: #666; margin-bottom: 5px;">Estimate to Complete (ETC)</div>
@@ -5260,25 +5242,25 @@
                             <div style="font-size: 22px; font-weight: 700; color: ${analysis.varianceAtCompletion >= 0 ? '#388E3C' : '#D32F2F'};">
                                 ${analysis.varianceAtCompletion >= 0 ? '+' : ''}$${(analysis.varianceAtCompletion / 1000).toFixed(0)}K
                             </div>
-                            <div style="font-size: 10px; color: #999; margin-top: 3px;">BAC - EAC ${analysis.varianceAtCompletion >= 0 ? '(Surplus âœ“)' : '(Deficit âš ï¸)'}</div>
+                            <div style="font-size: 10px; color: #999; margin-top: 3px;">BAC - EAC ${analysis.varianceAtCompletion >= 0 ? '(Surplus )' : '(Deficit )'}</div>
                         </div>
                         <div style="padding: 15px; background: #FFF9C4; border-radius: 8px;">
                             <div style="font-size: 11px; color: #666; margin-bottom: 5px;">To-Complete Performance Index (TCPI)</div>
                             <div style="font-size: 22px; font-weight: 700; color: ${analysis.tcpi <= 1.0 ? '#388E3C' : '#F57C00'};">${analysis.tcpi}</div>
-                            <div style="font-size: 10px; color: #999; margin-top: 3px;">(BAC-EV) Ã· (BAC-AC) ${analysis.tcpi <= 1.0 ? '(Achievable âœ“)' : '(Challenging âš ï¸)'}</div>
+                            <div style="font-size: 10px; color: #999; margin-top: 3px;">(BAC-EV)  (BAC-AC) ${analysis.tcpi <= 1.0 ? '(Achievable )' : '(Challenging )'}</div>
                         </div>
                     </div>
                     
                     <!-- EVM INTERPRETATION -->
                     <div style="margin-top: 20px; padding: 15px; background: #F5F7FA; border-radius: 8px;">
-                        <h4 style="margin: 0 0 10px 0; font-size: 14px; color: #333;">ðŸ“ˆ EVM Interpretation</h4>
+                        <h4 style="margin: 0 0 10px 0; font-size: 14px; color: #333;"> EVM Interpretation</h4>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 13px;">
                             <div>
                                 <strong>Cost Performance:</strong>
                                 <div style="color: ${analysis.cpi >= 1.0 ? '#388E3C' : '#D32F2F'}; margin-top: 5px;">
                                     ${analysis.cpi >= 1.0 
-                                        ? `âœ“ Project is running efficiently. Getting $${analysis.cpi.toFixed(2)} of value for every $1 spent.`
-                                        : `âš ï¸ Project is over budget. Only getting $${analysis.cpi.toFixed(2)} of value for every $1 spent.`
+                                        ? ` Project is running efficiently. Getting $${analysis.cpi.toFixed(2)} of value for every $1 spent.`
+                                        : ` Project is over budget. Only getting $${analysis.cpi.toFixed(2)} of value for every $1 spent.`
                                     }
                                 </div>
                             </div>
@@ -5286,8 +5268,8 @@
                                 <strong>Schedule Performance:</strong>
                                 <div style="color: ${analysis.spi >= 1.0 ? '#388E3C' : '#D32F2F'}; margin-top: 5px;">
                                     ${analysis.spi >= 1.0
-                                        ? `âœ“ Project is ${((analysis.spi - 1) * 100).toFixed(0)}% ahead of schedule.`
-                                        : `âš ï¸ Project is ${((1 - analysis.spi) * 100).toFixed(0)}% behind schedule.`
+                                        ? ` Project is ${((analysis.spi - 1) * 100).toFixed(0)}% ahead of schedule.`
+                                        : ` Project is ${((1 - analysis.spi) * 100).toFixed(0)}% behind schedule.`
                                     }
                                 </div>
                             </div>
@@ -5295,8 +5277,8 @@
                                 <strong>Completion Forecast:</strong>
                                 <div style="color: ${analysis.varianceAtCompletion >= 0 ? '#388E3C' : '#D32F2F'}; margin-top: 5px;">
                                     ${analysis.varianceAtCompletion >= 0
-                                        ? `âœ“ Projected to finish $${(Math.abs(analysis.varianceAtCompletion) / 1000).toFixed(0)}K under budget.`
-                                        : `âš ï¸ Projected to exceed budget by $${(Math.abs(analysis.varianceAtCompletion) / 1000).toFixed(0)}K.`
+                                        ? ` Projected to finish $${(Math.abs(analysis.varianceAtCompletion) / 1000).toFixed(0)}K under budget.`
+                                        : ` Projected to exceed budget by $${(Math.abs(analysis.varianceAtCompletion) / 1000).toFixed(0)}K.`
                                     }
                                 </div>
                             </div>
@@ -5304,8 +5286,8 @@
                                 <strong>Remaining Work:</strong>
                                 <div style="color: ${analysis.tcpi <= 1.0 ? '#388E3C' : '#F57C00'}; margin-top: 5px;">
                                     ${analysis.tcpi <= 1.0
-                                        ? `âœ“ Need ${analysis.tcpi.toFixed(2)} efficiency to finish on budget (achievable).`
-                                        : `âš ï¸ Need ${analysis.tcpi.toFixed(2)} efficiency to finish on budget (challenging).`
+                                        ? ` Need ${analysis.tcpi.toFixed(2)} efficiency to finish on budget (achievable).`
+                                        : ` Need ${analysis.tcpi.toFixed(2)} efficiency to finish on budget (challenging).`
                                     }
                                 </div>
                             </div>
@@ -5314,7 +5296,7 @@
                 </div>
                 
                 <!-- AI RECOMMENDATIONS -->
-                <h3 style="margin: 30px 0 15px 0; color: #333;">ðŸŽ¯ AI-Powered Recommendations</h3>
+                <h3 style="margin: 30px 0 15px 0; color: #333;"> AI-Powered Recommendations</h3>
                 ${analysis.recommendations.map(rec => `
                     <div class="ai-recommendation ${rec.priority.toLowerCase()}-priority">
                         <h4>
@@ -5341,7 +5323,7 @@
                 
                 <!-- FORECAST TIMELINE -->
                 <div class="forecast-timeline">
-                    <h3 style="margin: 0 0 15px 0; color: #333;">ðŸ“ˆ Budget Trend & Forecast</h3>
+                    <h3 style="margin: 0 0 15px 0; color: #333;"> Budget Trend & Forecast</h3>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 20px;">
                         <div style="text-align: center; padding: 10px; background: #E8F5E9; border-radius: 8px;">
                             <div style="font-size: 11px; color: #666;">Start Date</div>
@@ -5381,7 +5363,7 @@
                 
                 <!-- AI INSIGHTS -->
                 <div style="margin-top: 20px; padding: 20px; background: #F0F4FF; border-radius: 12px; border-left: 4px solid #7E57C2;">
-                    <h4 style="margin: 0 0 10px 0; color: #5E35B1;">ðŸ’¡ AI Insights</h4>
+                    <h4 style="margin: 0 0 10px 0; color: #5E35B1;"> AI Insights</h4>
                     <ul style="margin: 0; padding-left: 20px; color: #666;">
                         ${analysis.insights.map(insight => `<li style="margin-bottom: 8px;">${insight}</li>`).join('')}
                     </ul>
@@ -5455,7 +5437,7 @@
             if (variance > 15) {
                 recommendations.push({
                     priority: 'HIGH',
-                    title: 'ðŸš¨ Negotiate Scope Reduction or Budget Increase',
+                    title: ' Negotiate Scope Reduction or Budget Increase',
                     description: `Project is forecasted to exceed budget by ${Math.abs(variance)}%. Immediate action required to either reduce scope by ~15-20% or request additional budget of $${((forecastTotal - plannedBudget) / 1000).toFixed(0)}K.`,
                     impact: `Save $${((forecastTotal - plannedBudget) * 0.5 / 1000).toFixed(0)}K`,
                     timeline: 'Within 2 weeks',
@@ -5464,7 +5446,7 @@
             } else if (variance > 5) {
                 recommendations.push({
                     priority: 'MEDIUM',
-                    title: 'âš ï¸ Review Budget and Optimize Resources',
+                    title: ' Review Budget and Optimize Resources',
                     description: `Trending ${variance}% over budget. Review resource allocation and consider efficiency improvements. Early intervention can bring project back on track.`,
                     impact: `Prevent $${((forecastTotal - plannedBudget) / 1000).toFixed(0)}K overrun`,
                     timeline: '2-4 weeks',
@@ -5475,7 +5457,7 @@
             if (burnRate > (plannedBudget / (totalDuration / 30)) * 1.2) {
                 recommendations.push({
                     priority: 'MEDIUM',
-                    title: 'ðŸ“Š Implement Tighter Budget Controls',
+                    title: ' Implement Tighter Budget Controls',
                     description: `Monthly burn rate of $${(burnRate / 1000).toFixed(0)}K/month is 20%+ above plan. Implement weekly budget reviews and approval gates for additional work.`,
                     impact: 'Reduce burn 10-15%',
                     timeline: 'Immediate',
@@ -5486,7 +5468,7 @@
             if (proj.health === 'At Risk' || proj.health === 'Delayed') {
                 recommendations.push({
                     priority: 'HIGH',
-                    title: 'ðŸ”„ Project Recovery Plan Needed',
+                    title: ' Project Recovery Plan Needed',
                     description: `Project health is ${proj.health}. Develop recovery plan addressing timeline, resources, and deliverables. Consider bringing in project recovery specialist.`,
                     impact: 'Get back on track',
                     timeline: '1 week',
@@ -5497,7 +5479,7 @@
             if (recommendations.length === 0) {
                 recommendations.push({
                     priority: 'LOW',
-                    title: 'âœ… Continue Current Approach',
+                    title: ' Continue Current Approach',
                     description: 'Project is tracking well against budget. Maintain current resource levels and monitor weekly. No immediate action required.',
                     impact: 'Stay on budget',
                     timeline: 'Ongoing',
@@ -5537,7 +5519,7 @@
             const PV = (percentElapsed / 100) * BAC;
             
             // EV = Earned Value (value of work completed)
-            // Based on progress: EV = % Complete Ã— BAC
+            // Based on progress: EV = % Complete  BAC
             const progressPercent = proj.progress || ((actualEffort / effortBudget) * 100);
             const EV = (progressPercent / 100) * BAC;
             
@@ -5700,7 +5682,7 @@
             
             details.innerHTML = `
                 <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 12px;">
-                    <h3 style="margin: 0 0 15px 0;">ðŸŽ¯ Portfolio Risk Summary</h3>
+                    <h3 style="margin: 0 0 15px 0;"> Portfolio Risk Summary</h3>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
                         <div style="padding: 15px; background: ${totalHigh > 0 ? '#FFEBEE' : '#E8F5E9'}; border-radius: 8px;">
                             <div style="font-size: 12px; color: #666;">High Risk Projects</div>
@@ -5716,7 +5698,7 @@
                         </div>
                     </div>
                     <p style="margin-top: 15px; color: #666; font-size: 13px;">
-                        ðŸ’¡ Click on any cell in the heat map above to see detailed project information
+                         Click on any cell in the heat map above to see detailed project information
                     </p>
                 </div>
             `;
@@ -5736,7 +5718,7 @@
             
             details.innerHTML = `
                 <div style="margin-top: 20px; padding: 25px; background: white; border-radius: 12px; border-left: 4px solid #FF9800;">
-                    <h3 style="margin: 0 0 15px 0;">ðŸ“‹ ${probability.toUpperCase()} Probability / ${impact.toUpperCase()} Impact Projects</h3>
+                    <h3 style="margin: 0 0 15px 0;"> ${probability.toUpperCase()} Probability / ${impact.toUpperCase()} Impact Projects</h3>
                     ${projects.map(p => `
                         <div style="background: #F5F7FA; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
                             <div style="font-weight: 600; margin-bottom: 8px;">${p.proj.name}</div>
@@ -5783,7 +5765,7 @@
             content.innerHTML = `
                 <!-- BASE CASE -->
                 <div class="scenario-card" style="border-color: #757575;">
-                    <h3 style="margin: 0 0 15px 0;">ðŸ“Š Base Case: Current Plan</h3>
+                    <h3 style="margin: 0 0 15px 0;"> Base Case: Current Plan</h3>
                     <div class="scenario-metrics">
                         <div class="scenario-metric">
                             <div class="scenario-metric-label">Total Budget</div>
@@ -5808,7 +5790,7 @@
                     <div class="scenario-card ${scenario.recommended ? 'recommended' : ''}">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                             <h3 style="margin: 0;">${scenario.icon} ${scenario.name}</h3>
-                            ${scenario.recommended ? '<span class="scenario-badge ai-recommended">â­ AI RECOMMENDED</span>' : ''}
+                            ${scenario.recommended ? '<span class="scenario-badge ai-recommended"> AI RECOMMENDED</span>' : ''}
                         </div>
                         <p style="color: #666; margin-bottom: 15px;">${scenario.description}</p>
                         
@@ -5852,7 +5834,7 @@
             // Scenario 1: Add Resources (Aggressive)
             scenarios.push({
                 name: 'Scenario A: Add Resources (Aggressive)',
-                icon: 'ðŸš€',
+                icon: '',
                 description: 'Bring in 2 additional contractors to accelerate delivery',
                 budgetChange: proj.budget * 0.15,
                 timeChange: -2,
@@ -5870,7 +5852,7 @@
             // Scenario 2: Reduce Scope (Conservative)
             scenarios.push({
                 name: 'Scenario B: Reduce Scope (Conservative)',
-                icon: 'ðŸ“‰',
+                icon: '',
                 description: 'Cut non-critical features by 15-20% to stay on budget',
                 budgetChange: -proj.budget * 0.15,
                 timeChange: -1,
@@ -5888,7 +5870,7 @@
             // Scenario 3: Rebalance Resources (Balanced) - AI Recommended
             scenarios.push({
                 name: 'Scenario C: Optimize Resources (Balanced)',
-                icon: 'âš–ï¸',
+                icon: '',
                 description: 'Rebalance team workload and add 1 BA for gap coverage',
                 budgetChange: proj.budget * 0.05,
                 timeChange: 0,
@@ -5907,7 +5889,7 @@
             if (baseAnalysis.variance > 10) {
                 scenarios.push({
                     name: 'Scenario D: Request Additional Budget',
-                    icon: 'ðŸ’°',
+                    icon: '',
                     description: 'Negotiate PCR for full forecast amount to maintain scope',
                     budgetChange: baseAnalysis.forecastTotal - proj.budget,
                     timeChange: 1,
@@ -6002,8 +5984,8 @@
                         <div style="font-size: 36px; font-weight: 700;">${activeProjects}/${totalProjects}</div>
                         <div style="font-size: 14px; opacity: 0.9;">Active Projects</div>
                         <div style="margin-top: 15px; font-size: 13px;">
-                            <div>âš ï¸ At Risk: ${atRisk}</div>
-                            <div>â° Delayed: ${delayed}</div>
+                            <div> At Risk: ${atRisk}</div>
+                            <div> Delayed: ${delayed}</div>
                         </div>
                     </div>
                     
@@ -6028,7 +6010,7 @@
                 </div>
                 
                 <div style="background: white; padding: 25px; border-radius: 12px; border: 2px solid #E0E0E0;">
-                    <h3 style="margin: 0 0 20px 0; color: #0052CC;">ðŸ’¡ AI-Powered Insights</h3>
+                    <h3 style="margin: 0 0 20px 0; color: #0052CC;"> AI-Powered Insights</h3>
                     <div style="display: grid; gap: 15px;">
             `;
             
@@ -6036,7 +6018,7 @@
             if (atRisk > 0) {
                 html += `
                     <div style="padding: 15px; background: #FFF3E0; border-left: 4px solid #FF9800; border-radius: 4px;">
-                        <strong>âš ï¸ Risk Alert:</strong> ${atRisk} project${atRisk > 1 ? 's' : ''} flagged as "At Risk". Recommend immediate review and mitigation planning.
+                        <strong> Risk Alert:</strong> ${atRisk} project${atRisk > 1 ? 's' : ''} flagged as "At Risk". Recommend immediate review and mitigation planning.
                     </div>
                 `;
             }
@@ -6044,7 +6026,7 @@
             if (delayed > 0) {
                 html += `
                     <div style="padding: 15px; background: #FFEBEE; border-left: 4px solid #F44336; border-radius: 4px;">
-                        <strong>â° Schedule Alert:</strong> ${delayed} project${delayed > 1 ? 's are' : ' is'} delayed. Consider resource reallocation or scope adjustment.
+                        <strong> Schedule Alert:</strong> ${delayed} project${delayed > 1 ? 's are' : ' is'} delayed. Consider resource reallocation or scope adjustment.
                     </div>
                 `;
             }
@@ -6053,7 +6035,7 @@
             if (utilizationRate < 50) {
                 html += `
                     <div style="padding: 15px; background: #E8F5E9; border-left: 4px solid #4CAF50; border-radius: 4px;">
-                        <strong>ðŸ’° Budget Health:</strong> Portfolio is ${utilizationRate}% utilized. Good budget control maintained.
+                        <strong> Budget Health:</strong> Portfolio is ${utilizationRate}% utilized. Good budget control maintained.
                     </div>
                 `;
             }
@@ -6143,7 +6125,7 @@
                             <div style="display: flex; gap: 5px; flex-shrink: 0; align-items: center;">
                                 <span style="padding: 2px 6px; background: ${typeColor}; color: white; border-radius: 10px; font-size: 9px;">${proj.projectType}</span>
                                 <span style="padding: 2px 6px; background: ${healthColor}; color: white; border-radius: 10px; font-size: 9px;">${proj.projectHealth}</span>
-                                ${canEdit ? `<button onclick="editResourceAllocation('${resourceName}', '${proj.projectName.replace(/'/g, "\\'")}')" style="padding: 4px 8px; background: #0052CC; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 10px; font-weight: 600;">âœï¸ Edit</button>` : ''}
+                                ${canEdit ? `<button onclick="editResourceAllocation('${resourceName}', '${proj.projectName.replace(/'/g, "\\'")}')" style="padding: 4px 8px; background: #0052CC; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 10px; font-weight: 600;"> Edit</button>` : ''}
                             </div>
                         </div>
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; font-size: 11px; background: #F8F9FA; padding: 8px; border-radius: 4px;">
@@ -6370,7 +6352,7 @@
             const dateRangeText = `${startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} - ${endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
             
             // Timeline header
-            let timelineHTML = `<div style="text-align: center; font-weight: 700; color: #0052CC; margin-bottom: 10px; font-size: 14px;">ðŸ“… Date Range: ${dateRangeText}</div>`;
+            let timelineHTML = `<div style="text-align: center; font-weight: 700; color: #0052CC; margin-bottom: 10px; font-size: 14px;"> Date Range: ${dateRangeText}</div>`;
             timelineHTML += '<div style="display: flex; border: 2px solid #0052CC; border-radius: 8px; overflow: hidden; margin-bottom: 15px;">';
             timelineHTML += '<div style="width: 300px; background: #0052CC; color: white; padding: 10px; font-weight: 700; text-align: center;">Project</div>';
             timelineHTML += '<div style="flex: 1; display: flex; background: #0052CC; color: white;">';
@@ -6443,7 +6425,7 @@
                                        overflow: hidden; 
                                        white-space: nowrap; 
                                        box-shadow: 0 1px 2px rgba(0,0,0,0.2);">
-                                ${res.name} â€¢ ${res.plannedHours}h â€¢ ${res.allocation}%
+                                ${res.name}  ${res.plannedHours}h  ${res.allocation}%
                             </div>`;
                         }
                     }
